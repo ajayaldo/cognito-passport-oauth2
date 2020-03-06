@@ -3,7 +3,6 @@ const OAuth2Strategy = require('passport-oauth2').Strategy;
 const AWS = require('aws-sdk');
 
 class CognitoStrategy {
-
     constructor({ clientDomain, clientID, clientSecret, callbackURL, passReqToCallback, region, scope }, verify, customAuthOptions = {}) {
         const options = {
             clientID,
@@ -29,16 +28,12 @@ class CognitoStrategy {
 util.inherits(CognitoStrategy, OAuth2Strategy);
 
 CognitoStrategy.prototype.userProfile = function(AccessToken, done) {
-    this.cognitoClient.getUser({
-        AccessToken
-    }, (err, userData) => {
-
+    this.cognitoClient.getUser({ AccessToken }, (err, userData) => {
         if (err) {
             return done(err, null);
         }
 
         const profile = {};
-
         profile.username = userData.Username;
 
         for (let index = userData.UserAttributes.length; index--;) {
