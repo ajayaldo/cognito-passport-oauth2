@@ -43,7 +43,7 @@ CognitoStrategy.prototype.userProfile = function(AccessToken, done) {
 
         done(null, profile);
     });
-};
+}
 
 CognitoStrategy.prototype.authorizationParams = function(options) {
     return this.customAuthOptions;
