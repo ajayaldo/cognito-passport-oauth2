@@ -1,5 +1,5 @@
 # passport-oauth2-cognito
-[Passport](https://github.com/jaredhanson/passport) [Cognito OAuth2 Authorization Code Grant Flow](https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/) [strategy](https://github.com/jaredhanson/passport-strategy) for authenticating against [AWS Cognito](https://aws.amazon.com/cognito/) [User pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html). This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.
+[Passport](https://github.com/jaredhanson/passport) [Cognito OAuth2 Authorization Code Grant Flow](https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/) [strategy](https://github.com/jaredhanson/passport-strategy) for authenticating against [AWS Cognito](https://aws.amazon.com/cognito/) [User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html). This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.
 
 ## Install
 
@@ -31,6 +31,7 @@ consumer key, consumer secret, and callback URL.
         passReqToCallback: true
     };
 
+    //Indicates the provider that the end user should authenticate with. You can provide other custom auth params here
     const customOptions = { identity_provider: 'your idp name' };
    
      async function verify(req, accessToken, refreshToken, profile, done) {
@@ -45,6 +46,9 @@ consumer key, consumer secret, and callback URL.
     };
     
     passport.use('cognito', new CognitoOAuth2Strategy(options, verify, customOptions));
+    or 
+    passport.use('cognito', new CognitoOAuth2Strategy(options, verify)); //go to default cognito login page and let user choose the idp
+    
     
     
 #### Configure Route to Invoke Auth Requests
