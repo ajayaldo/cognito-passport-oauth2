@@ -1,12 +1,25 @@
 {
   "name": "@ajayaldo/passport-cognito-oauth2",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.4",
+  "description": "A passport strategy to authenticate against an AWS Conginito User Pool OAuth 2.0 provider and get user profile and access token. This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "keywords": [
+    "passport",
+    "cognito",
+    "aws",
+    "strategy",
+    "oauth2",
+    "authentication",
+    "express",
+    "userpool"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajayaldo/passport-cognito-oauth2.git"
+  },
+  "author": "ajayaldo",
   "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.634.0",

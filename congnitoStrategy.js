@@ -14,7 +14,7 @@ class CognitoStrategy {
         };
 
         if (scope !== undefined) {
-            options['scope'] = scope;
+            options['scope'] = scope
         }
 
         this.customAuthOptions = customAuthOptions;
