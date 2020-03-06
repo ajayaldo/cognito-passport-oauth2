@@ -1,6 +1,6 @@
 const util = require('util');
 const OAuth2Strategy = require('passport-oauth2').Strategy;
-const AWS = require('npm install aws-sdk');
+const AWS = require('aws-sdk');
 
 class CognitoStrategy {
 
