@@ -5,8 +5,6 @@
 
     $ npm i @ajayaldo/passport-cognito-oauth2
     
-## Configure
-
 #### Create Strategy
 
 The strategy requires a `verify` callback, which accepts these
@@ -59,8 +57,9 @@ Use `passport.authenticate()`, specifying the `'cognito'` strategy
 
     authenticationRouter
     .route('/auth/callback')
-    .post(passport.authenticate('cognito', { failureRedirect: '/', failureFlash: true }));
+    .get(passport.authenticate('cognito', { failureRedirect: '/', failureFlash: true }));
 
 ## Additional Details
+A simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passport-example)
 
 Refer [here](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html) for more information about configuring cognito app client
