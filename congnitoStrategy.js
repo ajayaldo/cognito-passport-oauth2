@@ -3,22 +3,26 @@ const OAuth2Strategy = require('passport-oauth2').Strategy;
 const AWS = require('aws-sdk');
 
 class CognitoStrategy {
-    constructor({ clientDomain, clientID, clientSecret, callbackURL, passReqToCallback, region, scope }, verify, customAuthOptions = {}) {
+    constructor({ clientDomain, clientID, clientSecret, callbackURL, passReqToCallback, region, scope, scopeSeparator, state, pkce, sessionKey, trustProxy, skipUserProfile, customHeaders }, verify, customAuthOptions = {}) {
+        
         const options = {
             clientID,
             clientSecret,
             authorizationURL: `${clientDomain}/oauth2/authorize`,
             tokenURL: `${clientDomain}/oauth2/token`,
             callbackURL,
-            passReqToCallback
+            passReqToCallback,
+            state,
+            pkce,
+            sessionKey,
+            proxy: trustProxy,
+            skipUserProfile,
+            scope,
+            scopeSeparator,
+            customHeaders
         };
 
-        if (scope !== undefined) {
-            options['scope'] = scope
-        }
-
         this.customAuthOptions = customAuthOptions;
-
         OAuth2Strategy.call(this, options, verify);
         AWS.config.region = region;
         this.cognitoClient = new AWS.CognitoIdentityServiceProvider();
@@ -34,7 +38,6 @@ CognitoStrategy.prototype.userProfile = function(AccessToken, done) {
         }
 
         const profile = {};
-        profile.username = userData.Username;
 
         for (let index = userData.UserAttributes.length; index--;) {
             let attribute = userData.UserAttributes[index];
