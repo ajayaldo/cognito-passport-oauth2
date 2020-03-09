@@ -37,14 +37,7 @@ CognitoStrategy.prototype.userProfile = function(AccessToken, done) {
             return done(err, null);
         }
 
-        const profile = {};
-
-        for (let index = userData.UserAttributes.length; index--;) {
-            let attribute = userData.UserAttributes[index];
-            profile[attribute.Name] = attribute.Value;
-        }
-
-        done(null, profile);
+        done(null, userData);
     });
 }
 
