@@ -27,14 +27,14 @@ consumer key, consumer secret, and callback URL.
         clientDomain: 'https://yourdomain.auth.eu-west-1.amazoncognito.com', //Your cognito user pool domain
         clientID: 'your cognito app client id',
         clientSecret: 'your cognito app client secret',
-        region: 'eu-west-1',
+        region: 'eu-west-1', //your region
         passReqToCallback: true
     };
 
-    //Indicates the provider that the end user should authenticate with. You can provide other custom auth params here
+    //Indicates the provider that the end user should authenticate with, you can as well here provide other custom auth params 
     const customOptions = { identity_provider: 'your idp name' };
      
-     async function verify(req, accessToken, refreshToken, params, profile, done) //if you need id_token, with this `verify signature` you can access it from params.id_token
+     async function verify(req, accessToken, refreshToken, params, profile, done) //if you need id_token, with this `verify signature` and appropriate scope, you can access it from params.id_token
    
      async function verify(req, accessToken, refreshToken, profile, done) {
         //Your additional user logic
