@@ -7,9 +7,8 @@
     
 #### Create Strategy
 
-The strategy requires a `verify` callback, which accepts these
-credentials and calls `done` providing a user, as well as `options` specifying a
-consumer key, consumer secret, and callback URL.
+The strategy requires a `verify` functions, auth `options`, and optional `additional auth params`.
+A simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passport-example).
     
     const passport = require('passport'),
     CognitoOAuth2Strategy = require('cognito-passport-oauth2');
@@ -61,6 +60,5 @@ Use `passport.authenticate()`, specifying the `'cognito'` strategy
     app.get('/auth/callback', passport.authenticate('cognito', { failureRedirect: '/error', failureFlash: true, successRedirect: '/index' }));
 
 ## Additional Details
-A simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passport-example)
 
 Refer [here](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html) for more information about configuring cognito app client
