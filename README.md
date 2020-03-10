@@ -33,8 +33,8 @@ A simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passp
     //Indicates the provider that the end user should authenticate with, you can as well here provide other custom auth params 
     const customOptions = { identity_provider: 'your idp name' };
      
-     async function verify(req, accessToken, refreshToken, params, profile, done) //if you need id_token, with this `verify signature` and appropriate scope, you can access it from params.id_token
-   
+     async function verify(req, accessToken, refreshToken, { id_token }, profile, done) //if you need id_token, with this `verify signature` and appropriate scope
+     or   
      async function verify(req, accessToken, refreshToken, profile, done) {
         //Your additional user logic
 
