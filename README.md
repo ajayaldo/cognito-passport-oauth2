@@ -33,6 +33,8 @@ consumer key, consumer secret, and callback URL.
 
     //Indicates the provider that the end user should authenticate with. You can provide other custom auth params here
     const customOptions = { identity_provider: 'your idp name' };
+     
+     async function verify(req, accessToken, refreshToken, params, profile, done) //if you need id_token, with this `verify signature` you can access it from params.id_token
    
      async function verify(req, accessToken, refreshToken, profile, done) {
         //Your additional user logic
