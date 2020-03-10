@@ -7,8 +7,8 @@
     
 #### Create Strategy
 
-The strategy requires a `verify` functions, auth `options`, and optional `additional auth params`.
-A simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passport-example).
+The strategy takes a `verify` function, auth `options`, and optional `additional auth params`.
+Find simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passport-example).
     
     const passport = require('passport'),
     CognitoOAuth2Strategy = require('cognito-passport-oauth2');
@@ -30,10 +30,11 @@ A simple working example [here](https://github.com/ajayaldo/cognito-oauth2-passp
         passReqToCallback: true
     };
 
-    //Indicates the provider that the end user should authenticate with, you can as well here provide other custom auth params 
+    //Indicates the provider that the end user should authenticate with. 
+    //You can as well provide other custom auth params 
     const customOptions = { identity_provider: 'your idp name' };
      
-     async function verify(req, accessToken, refreshToken, { id_token }, profile, done) //if you need id_token, with this `verify signature` and appropriate scope
+     async function verify(req, accessToken, refreshToken, { id_token }, profile, done) //if you need id_token, use this signature
      or   
      async function verify(req, accessToken, refreshToken, profile, done) {
         //Your additional user logic
