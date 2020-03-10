@@ -3,7 +3,7 @@ const OAuth2Strategy = require('passport-oauth2').Strategy;
 const AWS = require('aws-sdk');
 
 class CognitoStrategy {
-    constructor({ clientDomain, clientID, clientSecret, callbackURL, passReqToCallback, region, scope, scopeSeparator, state, pkce, sessionKey, trustProxy, skipUserProfile, customHeaders }, verify, customAuthOptions = {}) {
+    constructor({ clientDomain, clientID, clientSecret, callbackURL, passReqToCallback, region, scope, scopeSeparator, state, pkce, sessionKey, trustProxy, skipUserProfile, customHeaders, store }, verify, customAuthOptions = {}) {
         
         const options = {
             clientID,
@@ -19,7 +19,8 @@ class CognitoStrategy {
             skipUserProfile,
             scope,
             scopeSeparator,
-            customHeaders
+            customHeaders,
+            store
         };
 
         this.customAuthOptions = customAuthOptions;
