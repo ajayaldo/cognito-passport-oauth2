@@ -1,5 +1,5 @@
 # cognito-passport-oauth2
-[Passport](https://github.com/jaredhanson/passport) [Cognito OAuth2 Authorization Code Grant Flow](https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/) [strategy](https://github.com/jaredhanson/passport-strategy) for authenticating against [AWS Cognito](https://aws.amazon.com/cognito/) [User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html). This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.
+[Passport](https://github.com/jaredhanson/passport) [Cognito OAuth2](https://aws.amazon.com/blogs/mobile/understanding-amazon-cognito-user-pool-oauth-2-0-grants/) [strategy](https://github.com/jaredhanson/passport-strategy) for [AWS Cognito](https://aws.amazon.com/cognito/) [User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html). This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.
 
 ## Install
 
@@ -57,6 +57,8 @@ Find simple working example [here](https://github.com/ajayaldo/cognito-oauth2-pa
 Use `passport.authenticate()`, specifying the `'cognito'` strategy
 
     app.get('/auth/login', passport.authenticate('cognito'));
+    or
+    app.get('/auth/login', passport.authenticate('cognito', additionalAuthParameters)); //Overwrite customOptions (see above) or provide additional auth params
 
     app.get('/auth/callback', passport.authenticate('cognito', { failureRedirect: '/error', failureFlash: true, successRedirect: '/index' }));
 
