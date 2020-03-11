@@ -43,7 +43,9 @@ CognitoStrategy.prototype.userProfile = function(AccessToken, done) {
 }
 
 CognitoStrategy.prototype.authorizationParams = function(options) {
-    return this.customAuthOptions;
+    let mergedOptions = { ...this.customAuthOptions, ...options };
+    
+    return mergedOptions;
 }
 
 module.exports = CognitoStrategy;
