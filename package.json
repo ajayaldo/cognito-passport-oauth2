@@ -1,6 +1,6 @@
 {
   "name": "cognito-passport-oauth2",
-  "version": "1.1.5",
+  "version": "1.0.6",
   "description": "A passport strategy to authenticate against an AWS Conginito User Pool OAuth 2.0 provider and get user profile and access token. This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,9 @@
     "oauth2",
     "authentication",
     "express",
-    "userpool"
+    "userpool",
+    "cognito authentication",
+    "authorization"
   ],
   "repository": {
     "type": "git",
