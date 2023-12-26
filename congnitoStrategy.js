@@ -1,7 +1,9 @@
 const util = require('util');
 const OAuth2Strategy = require('passport-oauth2').Strategy;
-const AWS = require('aws-sdk');
-
+const {
+    GetUserCommand,
+    CognitoIdentityProviderClient,
+  } =require('@aws-sdk/client-cognito-identity-provider');
 class CognitoStrategy {
     constructor({ clientDomain, clientID, clientSecret, callbackURL, passReqToCallback, region, scope, scopeSeparator, state, pkce, sessionKey, trustProxy, skipUserProfile, customHeaders, store }, verify, customAuthOptions = {}) {
         
@@ -25,21 +27,21 @@ class CognitoStrategy {
 
         this.customAuthOptions = customAuthOptions;
         OAuth2Strategy.call(this, options, verify);
-        AWS.config.region = region;
-        this.cognitoClient = new AWS.CognitoIdentityServiceProvider();
+        this.cognitoClient = new CognitoIdentityProviderClient({region});
     }
 }
 
 util.inherits(CognitoStrategy, OAuth2Strategy);
 
-CognitoStrategy.prototype.userProfile = function(AccessToken, done) {
-    this.cognitoClient.getUser({ AccessToken }, (err, userData) => {
-        if (err) {
-            return done(err, null);
-        }
+CognitoStrategy.prototype.userProfile = async function(AccessToken, done) {
+    const getUserCommand = new GetUserCommand({ AccessToken });
 
+    try {
+        const userData = await this.cognitoClient.send(getUserCommand);
         done(null, userData);
-    });
+    } catch (err) {
+        done(err, null);
+    }
 }
 
 CognitoStrategy.prototype.authorizationParams = function(options) {
