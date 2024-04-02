@@ -1,10 +1,9 @@
 {
   "name": "cognito-passport-oauth2",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A passport strategy to authenticate against an AWS Conginito User Pool OAuth 2.0 provider and get user profile, access token and ID token. This supports providing congnito specific additional auth parameters. This is subclass of passport-oauth2 strategy.",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
     "passport",
     "cognito",
@@ -24,7 +23,7 @@
   "author": "ajayaldo",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.634.0",
-    "passport-oauth2": "^1.5.0"
+    "@aws-sdk/client-cognito-identity-provider": "^3.481.0",
+    "passport-oauth2": "^1.7.0"
   }
 }
