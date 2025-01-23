@@ -1,8 +1,9 @@
 
-import OAuth2Strategy from 'passport-oauth2';
+import * as OAuth2Strategy from 'passport-oauth2';
 import { GetUserCommand } from '@aws-sdk/client-cognito-identity-provider';
 import { CognitoIdentityProviderClient } from '@aws-sdk/client-cognito-identity-provider';
 import { CognitoOAuth2Options, CustomAuthOptions } from './types';
+import { StrategyOptionsWithRequest, VerifyFunctionWithRequest } from 'passport-oauth2';
 
 export class CognitoStrategy extends OAuth2Strategy {
   private readonly cognitoClient: CognitoIdentityProviderClient;
@@ -10,17 +11,17 @@ export class CognitoStrategy extends OAuth2Strategy {
 
   constructor(
     options: CognitoOAuth2Options,
-    verify: Function,
+    verify: VerifyFunctionWithRequest<any, any>,
     customAuthOptions = {}
   ) {
 
-    const oauthOption = {
+    const oauthOption: StrategyOptionsWithRequest = {
       clientID: options.clientID,
       clientSecret: options.clientSecret,
       authorizationURL: `${options.clientDomain}/oauth2/authorize`,
       tokenURL: `${options.clientDomain}/oauth2/token`,
       callbackURL: options.callbackURL,
-      passReqToCallback: options.passReqToCallback,
+      passReqToCallback: true,
       state: options.state,
       pkce: options.pkce,
       sessionKey: options.sessionKey,
@@ -32,7 +33,7 @@ export class CognitoStrategy extends OAuth2Strategy {
       store: options.store,
     };
 
-    super(options, verify);
+    super(oauthOption, verify);
 
     this.cognitoClient = new CognitoIdentityProviderClient({ region: options.region });
     this.customAuthOptions = customAuthOptions;

@@ -1,3 +1,5 @@
+import { StateStore } from "passport-oauth2";
+
 export interface CognitoOAuth2Options {
   clientDomain: string;
   clientID: string;
@@ -13,7 +15,8 @@ export interface CognitoOAuth2Options {
   trustProxy?: boolean;
   skipUserProfile?: boolean;
   customHeaders?: Record<string, string>;
-  store?: boolean;
+  store?: StateStore;
+
 }
 
 export interface CustomAuthOptions {
