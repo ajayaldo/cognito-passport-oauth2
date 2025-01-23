@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CognitoStrategy = void 0;
 const OAuth2Strategy = require("passport-oauth2");
 const client_cognito_identity_provider_1 = require("@aws-sdk/client-cognito-identity-provider");
-const client_cognito_identity_provider_2 = require("@aws-sdk/client-cognito-identity-provider");
 class CognitoStrategy extends OAuth2Strategy {
     constructor(options, verify, customAuthOptions = {}) {
         const oauthOption = {
@@ -33,7 +32,7 @@ class CognitoStrategy extends OAuth2Strategy {
             store: options.store,
         };
         super(oauthOption, verify);
-        this.cognitoClient = new client_cognito_identity_provider_2.CognitoIdentityProviderClient({ region: options.region });
+        this.cognitoClient = new client_cognito_identity_provider_1.CognitoIdentityProviderClient({ region: options.region });
         this.customAuthOptions = customAuthOptions;
         this.authorizationParams = this.authorizationParams.bind(this);
         this.userProfile = this.userProfile.bind(this);
